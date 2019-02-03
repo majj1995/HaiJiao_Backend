@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>发布帖子-海角</title>
+<meta name="keywords" content="个人博客" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="css/index.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<!--这里改-->
+<script src="./lib/vue-2.4.0.js"></script>
+ <script src="./lib/vue-resource-1.3.4.js"></script>
+</head>
+
+<body>
+      <!--header start-->
+    <div id="header">
+      <h1>海角</h1>
+      <p>世界那么大，我们陪你去看看。</p>    
+    </div>
+     <!--header end-->
+    <!--nav-->
+     <div id="nav">
+        <ul>
+         <li><a href="index.html">首页</a></li>
+         <li><a href="about.html">关于我们</a></li>
+         <li><a href="bbs.html">论坛</a></li>
+         <li><a href="post.html">发布帖子</a></li>
+         <li><a href="xc.html">旅行组队</a></li>
+         <li><a href="learn.html">发布组队</a></li>
+         <li><a href="guestbook.html">个人信息</a></li>
+         <div class="clear"></div>
+        </ul>
+      </div>
+       <!--nav end-->
+    <!--content start-->
+    <div id="content">
+       <!--left-->
+         <div class="left" id="guestbook">
+           <div class="weizi">
+           <div class="wz_text">当前位置：<a href="#">首页</a>><h1>发布帖子</h1></div>
+           </div>
+           <div class="g_title">  标题
+             <input type="text" v-model="title" />
+           </div>
+           <div class="t_content">请编辑您的内容
+             
+           </div>
+           <div class="g_content">
+             <input type="text" v-model="content" style="height:200px;width:600px"/>
+           </div>
+           <div>
+           	<button onclick="add()" style="height:40px;width:80px;margin-left:520px";> 发布</button>
+           </div>
+         </div>
+         <!--end left -->
+         <!--right-->
+          <div class="right" id="c_right">
+          <div class="s_about">
+          <h2>您的信息</h2>
+            <img src="images/my.jpg" width="230" height="230" alt="博主"/>
+           <p>姓名：罗余华</p>
+           <p>职业：码农</p>
+           <p>简介：</p>
+          </div>
+          <!--栏目分类-->
+           <div class="lanmubox">
+              <div class="hd">
+               <ul><li>精心推荐</li><li>最新文章</li><li class="hd_3">随机文章</li></ul>
+              </div>
+              <div class="bd">
+                <ul>
+					<li><a href="#" title="网站项目实战开发（-）">网站项目实战开发（-）</a></li>
+					<li><a href="#" title="关于响应式布局">关于响应式布局</a></li>
+					<li><a href="#" title="如何创建个人博客网站">如何创建个人博客网站</a></li>
+					<li><a href="#" title="网站项目实战开发（二）">网站项目实战开发（二）</a></li>
+					<li><a href="#" title="为什么新站前期排名老是浮动？(转)">为什么新站前期排名老是浮动？(转)</a></li>
+				</ul>
+             
+              </div>
+           </div>
+           <!--end-->
+         </div>
+         <!--end  right-->
+         <div class="clear"></div>
+         
+    </div>
+    <!--content end-->
+    <!--footer-->
+    <div id="footer">
+     <p>Design by:少年 2014-8-9</p>
+    </div>
+    <!--footer end-->
+    <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
+    <script  type="text/javascript" src="js/nav.js"></script>
+     <script>
+    	var vm = new Vue({
+    		el: '#app',
+    		data:{
+    			title:'',
+    			content:'',
+    			
+    		}
+    		created(){
+    			
+    		}
+    		methods:{
+    		add(){
+    			this.$http.post('',{title:this.title,content:this.content},{emulateJSON:true}).then(result=>{
+    					if(result.body.status ===0){
+    			   		this.title='',
+    			   		this.content='',
+    			   	}else{
+    			   		alert('添加失败')
+    			   	}
+    		}
+    		}
+    	})
+    </script>
+</body>
+</html>
+
